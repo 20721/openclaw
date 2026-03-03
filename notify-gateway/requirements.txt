@@ -1,0 +1,7 @@
+# notify-gateway 依赖
+
+# YAML 配置
+PyYAML>=6.0
+
+# HTTP 请求
+requests>=2.28.0

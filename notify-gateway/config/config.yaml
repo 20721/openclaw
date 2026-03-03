@@ -1,0 +1,65 @@
+# notify-gateway 配置文件
+# 所有配置都在这里，简单明了，方便修改
+
+# ============ 基础配置 ============
+gateway:
+  name: "ubuntu-pc"              # 主机名称
+  host: "192.168.10.30"          # 主机 IP
+  port: 18789                    # Gateway 端口
+  check_interval: 300            # 检查间隔（秒，默认 5 分钟）
+
+# ============ 自动恢复配置 ============
+auto_recovery:
+  enabled: false                 # 是否启用自动恢复（true/false）
+  max_retries: 3                 # 最大重试次数
+  retry_interval: 60             # 重试间隔（秒）
+  notify_before: true            # 自动恢复前是否先通知
+
+# ============ 告警频率控制 ============
+alert_control:
+  min_interval: 600              # 最小告警间隔（秒，10 分钟内不重复通知）
+  max_alerts_per_hour: 6         # 每小时最大告警次数
+  quiet_hours:                   # 免打扰时段（可选）
+    enabled: false
+    start: "23:00"
+    end: "07:00"
+
+# ============ 通知渠道配置 ============
+channels:
+  # ----- Telegram -----
+  telegram:
+    enabled: true
+    bot_token: "YOUR_BOT_TOKEN"          # 替换为你的 Telegram Bot Token
+    chat_id: "YOUR_CHAT_ID"              # 替换为你的 Chat ID
+    include_recovery: true               # 包含恢复指南（true/false）
+  
+  # ----- 飞书 -----
+  feishu:
+    enabled: false
+    webhook_url: "YOUR_WEBHOOK_URL"      # 替换为飞书 webhook URL
+    include_recovery: true               # 包含恢复指南（true/false）
+  
+  # ----- 小米音箱 -----
+  xiaomi:
+    enabled: true
+    xiaomusic_url: "http://192.168.10.30:8090"
+    device_did: "981599844"              # 替换为你的设备 DID
+    alert_volume: 80                     # 告警时音量（0-100）
+    restore_volume: 50                   # 通知后恢复的音量（0-100）
+    alert_message: "主人，Gateway 离线了"  # 语音告警内容
+  
+  # ----- 苹果 iOS (Bark) -----
+  ios_bark:
+    enabled: false
+    bark_url: "https://api.day.app/YOUR_BARK_KEY"  # 替换为你的 Bark 推送 URL
+    sound: "alarm"                       # 通知音 (alarm/alert/success 等)
+    level: "timeSensitive"               # 通知级别 (active/passive/timeSensitive)
+    include_recovery: true               # 包含恢复指南（true/false）
+    group: "OpenClaw"                    # 通知分组
+
+# ============ 日志配置 ============
+logging:
+  level: "INFO"                  # 日志级别 (DEBUG/INFO/WARNING/ERROR)
+  file: "/var/log/notify-gateway/gateway.log"
+  max_size: "10MB"               # 日志文件最大大小
+  backup_count: 5                # 保留的日志文件数量

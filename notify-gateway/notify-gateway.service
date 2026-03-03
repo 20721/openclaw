@@ -1,0 +1,20 @@
+[Unit]
+Description=notify-gateway - Gateway 监控与通知服务
+After=network.target openclaw-gateway.service
+
+[Service]
+Type=simple
+User=ubuntu
+Group=ubuntu
+WorkingDirectory=/home/ubuntu/.openclaw/workspace/tools/notify-gateway
+ExecStart=/usr/bin/python3 /home/ubuntu/.openclaw/workspace/tools/notify-gateway/main.py
+Restart=always
+RestartSec=10
+StandardOutput=append:/var/log/notify-gateway/gateway.log
+StandardError=append:/var/log/notify-gateway/gateway.log
+
+# 环境变量
+Environment=PYTHONUNBUFFERED=1
+
+[Install]
+WantedBy=multi-user.target
