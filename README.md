@@ -19,7 +19,7 @@
 
 | 项目 | 状态 | 说明 |
 |------|------|------|
-| [backup-system](./backup-system/) | 🚧 开发中 | 备份系统框架 |
+| [backup-system](./backup-system/) | ✅ 已完成 | OpenClaw 灾难恢复系统 v2.0 |
 | [backup-nas](./backup-nas/) | 🚧 开发中 | 群晖 NAS 备份 |
 
 ### 📊 监控系统 (monitor-)
