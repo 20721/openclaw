@@ -1,0 +1,9 @@
+{
+  "xiaomusic_url": "http://localhost:8090",
+  "default_did": "你的设备 DID",
+  "devices": {
+    "小爱音箱": "你的设备 DID"
+  },
+  "default_volume": 50,
+  "timeout": 10
+}
